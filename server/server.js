@@ -26,11 +26,32 @@ app.post('/todos', (req, res) => {
     });
 });
 
+app.get('/todos', (req, res) => {
+    Todo.find().then((todos) => {
+        console.log(todos);
+        res.status(200).send({todos});
+    }, (e) => {
+        res.status(400).send(e);
+    });
+});
+
+app.post('/users', (req, res) => {
+    var user = new User({
+        email: req.body.email
+    });
+
+    user.save().then((doc) => {
+        res.send(doc);
+    }, (e) => {
+        res.status(200).send(e);
+    });
+});
+
 app.listen(port, () => {
     console.log(`started on port ${port}`);
 });
 
-
+module.exports = {app};
 
 
 
