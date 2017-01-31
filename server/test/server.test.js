@@ -92,7 +92,6 @@ describe('GET /todos/:id', () => {
 
     it('should return a 404 if not found', (done) => {
         let id = new ObjectID().toHexString();
-        console.log(id);
         request(app)
             .get(`/todos/${id}`)
             .expect(404)
